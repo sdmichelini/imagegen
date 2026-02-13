@@ -1,6 +1,6 @@
 # imagegen
 
-Simple Go CLI for generating branded images through OpenRouter.
+Simple Go CLI for generating branded images.
 
 ## Models
 
