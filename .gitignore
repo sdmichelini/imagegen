@@ -1,4 +1,5 @@
 .env
 main
+imagegen
 output/
 .DS_Store
