@@ -50,11 +50,12 @@ Generate with a single model and brand directory:
 - `-image-size`: image size `1K`, `2K`, or `4K` (default: `1K`, used by Gemini image model)
 - `-aspect-ratio`: optional ratio: `1:1`, `2:3`, `3:2`, `3:4`, `4:3`, `4:5`, `5:4`, `9:16`, `16:9`, `21:9`
 - `-n`: number of images per selected model (default: `1`)
-- `-output-format`: output format `jpg`, `webp`, or `ico` (default: `jpg`)
+- `-output-format`: output format `jpg`, `png`, `webp`, or `ico` (default: `jpg`)
+- `-ico-sizes`: comma-separated ICO sizes from `16x16`, `32x32`, `48x48` (default: `16x16,32x32,48x48`)
 
 ## Notes
 
 - The CLI reads non-binary UTF-8 files from `-brand-dir` (top-level only).
 - Files larger than 512KB are skipped.
 - Generated files are saved with model + UTC timestamp in the filename.
-- When `-output-format ico` is used, generation is forced to `1:1` and downscaled to a 32x32 favicon icon.
+- When `-output-format ico` is used, generation is forced to `1:1` and encoded with the sizes selected in `-ico-sizes`.
