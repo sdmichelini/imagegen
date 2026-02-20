@@ -1,0 +1,47 @@
+label {
+  display: grid;
+  gap: 0.35rem;
+  font-weight: 600;
+}
+
+input,
+textarea,
+select {
+  width: 100%;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 0.6rem 0.75rem;
+  font: inherit;
+  color: var(--text-1);
+  background: hsl(var(--neutral-h), 14%, 99%);
+  transition: border-color 140ms ease, box-shadow 140ms ease;
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+  outline: 3px solid var(--focus-ring);
+  outline-offset: 1px;
+  border-color: var(--primary-b);
+  box-shadow: 0 0 0 2px hsl(var(--primary-b-h), 80%, 90%);
+}
+
+input:disabled,
+textarea:disabled,
+select:disabled {
+  background: hsl(var(--neutral-h), 8%, 94%);
+  color: var(--text-2);
+  cursor: not-allowed;
+}
+
+.is-error input,
+.is-error textarea,
+.is-error select {
+  border-color: var(--danger);
+}
+
+.is-success input,
+.is-success textarea,
+.is-success select {
+  border-color: var(--success);
+}

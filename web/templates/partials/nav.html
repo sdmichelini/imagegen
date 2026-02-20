@@ -1,0 +1,13 @@
+{{define "nav"}}
+<header class="top-nav card">
+  <div class="top-nav__content">
+    <a class="brand" href="/">ImageGen</a>
+    <nav>
+      <a class="nav-link {{if eq .Data.CurrentPath "/brands"}}active{{end}}" href="/brands">Brands</a>
+      <a class="nav-link {{if eq .Data.CurrentPath "/projects"}}active{{end}}" href="/projects">Projects</a>
+      <a class="nav-link {{if eq .Data.CurrentPath "/jobs"}}active{{end}}" href="/jobs">Jobs</a>
+      <a class="nav-link {{if eq .Data.CurrentPath "/about"}}active{{end}}" href="/about">About</a>
+    </nav>
+  </div>
+</header>
+{{end}}
