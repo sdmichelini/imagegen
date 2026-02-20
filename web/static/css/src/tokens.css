@@ -1,0 +1,49 @@
+:root {
+  /* Primaries */
+  --primary-a-h: 24;
+  --primary-a-s: 72%;
+  --primary-a-l: 48%;
+  --primary-a: hsl(var(--primary-a-h), var(--primary-a-s), var(--primary-a-l));
+  --primary-a-strong: hsl(var(--primary-a-h), 74%, 40%);
+
+  --primary-b-h: 188;
+  --primary-b-s: 58%;
+  --primary-b-l: 42%;
+  --primary-b: hsl(var(--primary-b-h), var(--primary-b-s), var(--primary-b-l));
+  --primary-b-strong: hsl(var(--primary-b-h), 62%, 34%);
+
+  /* Neutral surfaces */
+  --neutral-h: 35;
+  --bg-page: hsl(var(--neutral-h), 10%, 95%);
+  --bg-surface: hsl(var(--neutral-h), 11%, 98%);
+  --bg-card: hsl(0, 0%, 100%);
+  --border: hsl(var(--neutral-h), 11%, 86%);
+  --border-strong: hsl(var(--neutral-h), 11%, 72%);
+
+  /* Text */
+  --text-1: hsl(28, 12%, 16%);
+  --text-2: hsl(30, 8%, 36%);
+  --text-inverse: hsl(0, 0%, 100%);
+
+  /* Semantic */
+  --success: hsl(151, 46%, 36%);
+  --success-soft: hsl(151, 50%, 93%);
+  --warning: hsl(36, 82%, 50%);
+  --warning-soft: hsl(36, 85%, 93%);
+  --danger: hsl(4, 72%, 48%);
+  --danger-soft: hsl(4, 78%, 94%);
+  --focus-ring: hsl(var(--primary-b-h), 85%, 62%);
+
+  /* Depth */
+  --shadow-sm: 0 1px 2px hsl(var(--neutral-h), 12%, 30%, 0.08);
+  --shadow-md: 0 2px 6px hsl(var(--neutral-h), 12%, 30%, 0.1);
+  --shadow-lg: 0 6px 18px hsl(var(--neutral-h), 12%, 30%, 0.13);
+  --shadow-xl: 0 16px 34px hsl(var(--neutral-h), 12%, 30%, 0.16);
+
+  /* Backwards-compatible aliases */
+  --shadow-1: var(--shadow-sm);
+  --shadow-2: var(--shadow-md);
+  --shadow-3: var(--shadow-lg);
+
+  --radius: 16px;
+}

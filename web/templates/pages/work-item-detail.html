@@ -1,0 +1,103 @@
+{{define "work-item-detail"}}
+<section class="card page-card">
+  <h1>{{.Data.Project.Name}} / {{.Data.WorkItem.Name}}</h1>
+  <p class="text-muted">Type: {{.Data.WorkItem.Type}}</p>
+  <p class="text-muted">Prompt (editable before submitting a job):</p>
+  <form method="post" action="/projects/{{.Data.Project.Slug}}/work-items/{{.Data.WorkItem.Slug}}/prompt" class="stack">
+    <label>Prompt
+      <textarea name="prompt" rows="7" required>{{.Data.WorkItem.Prompt}}</textarea>
+    </label>
+    <button class="btn btn-secondary" type="submit" data-loading-text="Saving...">Save Prompt</button>
+  </form>
+  {{if .Data.WorkItem.BrandOverride}}
+  <p class="text-muted">Brand override: <a href="/brands/{{.Data.WorkItem.BrandOverride}}">{{.Data.WorkItem.BrandOverride}}</a></p>
+  {{end}}
+  {{if and (eq .Data.WorkItem.BrandOverride "") .Data.Project.DefaultBrandSlug}}
+  <p class="text-muted">Using project default brand: <a href="/brands/{{.Data.Project.DefaultBrandSlug}}">{{.Data.Project.DefaultBrandSlug}}</a></p>
+  {{end}}
+</section>
+
+<section class="grid two-up">
+  <article class="card page-card">
+    <h2>Submit Generate Job</h2>
+    <form method="post" action="/projects/{{.Data.Project.Slug}}/work-items/{{.Data.WorkItem.Slug}}/generate" class="stack" id="generate-form">
+      <label>Adjustment for this run (optional)
+        <textarea name="adjustment" rows="4" placeholder="Make it more playful, high contrast, rounder icon shape..."></textarea>
+      </label>
+      <label>Model
+        <select name="model">
+          <option value="both">Both</option>
+          <option value="openai">OpenAI</option>
+          <option value="google">Google</option>
+        </select>
+      </label>
+      <label>Count
+        <input type="number" name="count" min="1" value="2">
+      </label>
+      <label>Output Format
+        <select name="output_format">
+          <option value="png">PNG</option>
+          <option value="jpg">JPG</option>
+          <option value="webp">WEBP</option>
+          <option value="ico">ICO</option>
+        </select>
+      </label>
+      <label>Image Size
+        <select name="image_size">
+          <option value="1K">1K</option>
+          <option value="2K">2K</option>
+          <option value="4K">4K</option>
+        </select>
+      </label>
+      <label>Aspect Ratio (optional)
+        <select name="aspect_ratio">
+          <option value="">Default</option>
+          <option value="1:1">1:1</option>
+          <option value="2:3">2:3</option>
+          <option value="3:2">3:2</option>
+          <option value="3:4">3:4</option>
+          <option value="4:3">4:3</option>
+          <option value="4:5">4:5</option>
+          <option value="5:4">5:4</option>
+          <option value="9:16">9:16</option>
+          <option value="16:9">16:9</option>
+          <option value="21:9">21:9</option>
+        </select>
+      </label>
+      <button class="btn btn-primary" type="submit" data-loading-text="Queueing...">Queue Generate Job</button>
+    </form>
+    <p id="generate-status" class="form-status hidden" aria-live="polite"></p>
+  </article>
+
+  <article class="card page-card">
+    <h2>Recent Jobs</h2>
+    <ul class="list">
+      {{range .Data.Jobs}}
+      <li>
+        <a href="/jobs/{{.ID}}">Job #{{.ID}}</a>
+        <span class="status-badge status-badge--{{.Status}}">{{.Status}}</span>
+      </li>
+      {{else}}
+      <li class="text-muted">No jobs submitted yet.</li>
+      {{end}}
+    </ul>
+    <p><a href="/jobs">View all jobs</a></p>
+  </article>
+</section>
+
+<section class="card page-card">
+  <h2>Generated Images</h2>
+  {{if .Data.WorkImages}}
+  <div class="image-list">
+    {{range .Data.WorkImages}}
+    <figure class="image-card">
+      <img src="{{.URL}}" alt="{{$.Data.WorkItem.Name}} {{.Name}}">
+      <figcaption><a href="{{.URL}}" target="_blank" rel="noopener">{{.Name}}</a></figcaption>
+    </figure>
+    {{end}}
+  </div>
+  {{else}}
+  <p class="text-muted">No generated images yet.</p>
+  {{end}}
+</section>
+{{end}}

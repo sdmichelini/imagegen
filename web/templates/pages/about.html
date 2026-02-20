@@ -1,0 +1,26 @@
+{{define "about"}}
+<section class="card page-card">
+  <h1>About ImageGen Workflow</h1>
+  <p class="text-muted">ImageGen organizes work using three core concepts.</p>
+</section>
+
+<section class="grid three-up">
+  <article class="card page-card">
+    <h2>Brand</h2>
+    <p>A brand is reusable text guidance that defines style, voice, and constraints for generated images.</p>
+    <p class="text-muted">Stored as Markdown in <code>~/.imagegen/brands/*.md</code>.</p>
+  </article>
+
+  <article class="card page-card">
+    <h2>Project</h2>
+    <p>A project is a container for related image work and can set a default brand context.</p>
+    <p class="text-muted">Stored under <code>~/.imagegen/projects/&lt;slug&gt;/project.json</code>.</p>
+  </article>
+
+  <article class="card page-card">
+    <h2>Work Item</h2>
+    <p>A work item is a specific asset task inside a project, for example an <code>icon</code> for <code>recipe-buddy</code>.</p>
+    <p class="text-muted">Stored under <code>work-items/&lt;slug&gt;/</code> with prompt and generated assets.</p>
+  </article>
+</section>
+{{end}}

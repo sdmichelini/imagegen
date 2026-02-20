@@ -1,0 +1,8 @@
+{{define "flash"}}
+{{if .Data.Flash}}
+<section class="flash flash--ok card" role="status" aria-live="polite">{{.Data.Flash}}</section>
+{{end}}
+{{if .Data.Error}}
+<section class="flash flash--error card" role="alert">{{.Data.Error}}</section>
+{{end}}
+{{end}}

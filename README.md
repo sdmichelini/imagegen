@@ -15,10 +15,23 @@ Simple Go CLI for generating branded images.
 export OPEN_ROUTER_API_KEY=your_key_here
 ```
 
-2. Build:
+2. Install dependencies:
 
 ```bash
-go build -o imagegen .
+make install
+```
+
+3. Build binaries and web assets:
+
+```bash
+make build
+```
+
+Optional frontend lint + type-check:
+
+```bash
+make web-lint
+make web-typecheck
 ```
 
 ## Usage
@@ -59,3 +72,32 @@ Generate with a single model and brand directory:
 - Files larger than 512KB are skipped.
 - Generated files are saved with model + UTC timestamp in the filename.
 - When `-output-format ico` is used, generation is forced to `1:1` and encoded with the sizes selected in `-ico-sizes`.
+
+## Web App (Scaffold)
+
+Run the local web app server in dev mode (builds first):
+
+```bash
+make dev
+```
+
+Optional overrides:
+
+```bash
+make dev ADDR=:9090 DATA_DIR=/tmp/imagegen-dev
+```
+
+Direct run after `make build`:
+
+```bash
+./imagegen-web -addr :8080 -data-dir ~/.imagegen
+```
+
+Web app persistence:
+- SQLite metadata database: `~/.imagegen/imagegen.db`
+- Generated image files: `~/.imagegen/images/...`
+
+Long-running generate actions are processed asynchronously:
+- Submit from a work item page
+- Track status in `/jobs`
+- Inspect failures in `/jobs/{id}`

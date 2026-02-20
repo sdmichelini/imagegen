@@ -1,0 +1,45 @@
+{{define "job-detail"}}
+<section class="card page-card" id="job-detail-root" data-job-id="{{.Data.Job.ID}}" data-job-status="{{.Data.Job.Status}}">
+  <h1>Job #{{.Data.Job.ID}}</h1>
+  <p>
+    <span id="job-status-badge" class="status-badge status-badge--{{.Data.Job.Status}}">{{.Data.Job.Status}}</span>
+  </p>
+  <p id="job-poll-notice" class="text-muted hidden" aria-live="polite"></p>
+  <p class="text-muted">
+    Work item: <a href="/projects/{{.Data.Job.ProjectSlug}}/work-items/{{.Data.Job.WorkItemSlug}}">{{.Data.Job.ProjectName}} / {{.Data.Job.WorkItemName}}</a>
+  </p>
+  <p class="text-muted">Created: {{fmtTime .Data.Job.CreatedAt}}</p>
+  <p class="text-muted">Started: {{fmtTimePtr .Data.Job.StartedAt}}</p>
+  <p class="text-muted">Finished: {{fmtTimePtr .Data.Job.FinishedAt}}</p>
+</section>
+
+{{if .Data.Job.ErrorMessage}}
+<section class="card page-card form-status form-status--error">
+  <h2>Failure Details</h2>
+  <pre class="preview-box">{{.Data.Job.ErrorMessage}}</pre>
+</section>
+{{end}}
+
+<section class="grid two-up">
+  <article class="card page-card">
+    <h2>Payload</h2>
+    <pre class="preview-box">{{.Data.Job.PayloadJSON}}</pre>
+  </article>
+
+  <article class="card page-card">
+    <h2>Run Images</h2>
+    {{if .Data.WorkImages}}
+    <div class="image-list">
+      {{range .Data.WorkImages}}
+      <figure class="image-card">
+        <img src="{{.URL}}" alt="Job {{$.Data.Job.ID}} image {{.Name}}">
+        <figcaption><a href="{{.URL}}" target="_blank" rel="noopener">{{.Name}}</a></figcaption>
+      </figure>
+      {{end}}
+    </div>
+    {{else}}
+    <p class="text-muted">No images available for this job yet.</p>
+    {{end}}
+  </article>
+</section>
+{{end}}

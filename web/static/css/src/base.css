@@ -1,0 +1,165 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: "Nunito Sans", "Avenir Next", "Trebuchet MS", "Segoe UI", sans-serif;
+  color: var(--text-1);
+  background: var(--bg-page);
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+a {
+  color: var(--primary-b-strong);
+  text-underline-offset: 2px;
+  transition: color 140ms ease;
+}
+
+a:hover {
+  color: var(--primary-b);
+}
+
+a:focus-visible {
+  outline: 3px solid var(--focus-ring);
+  outline-offset: 2px;
+  border-radius: 6px;
+}
+
+h1,
+h2,
+h3 {
+  margin: 0 0 0.75rem;
+}
+
+.page-shell {
+  max-width: 1100px;
+  margin: 1rem auto 3rem;
+  padding: 0 1rem;
+}
+
+.page-shell > * + * {
+  margin-top: 1.5rem;
+}
+
+.grid {
+  display: grid;
+  gap: 1rem;
+}
+
+.two-up {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.three-up {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.stack {
+  display: grid;
+  gap: 0.9rem;
+}
+
+.text-muted {
+  color: var(--text-2);
+}
+
+.list {
+  margin: 0;
+  padding-left: 1.25rem;
+}
+
+.metric {
+  margin: 0 0 1rem;
+  font-size: 2rem;
+  font-weight: 700;
+}
+
+.jobs-table {
+  width: 100%;
+  border-collapse: collapse;
+  display: block;
+  overflow-x: auto;
+}
+
+.jobs-table th,
+.jobs-table td {
+  text-align: left;
+  padding: 0.65rem 0.45rem;
+  border-bottom: 1px solid var(--border);
+  vertical-align: top;
+}
+
+.status-badge {
+  display: inline-block;
+  padding: 0.2rem 0.5rem;
+  border-radius: 999px;
+  border: 1px solid var(--border-strong);
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.status-badge--queued {
+  background: var(--warning-soft);
+  border-color: var(--warning);
+}
+
+.status-badge--running {
+  background: hsl(var(--primary-b-h), 70%, 93%);
+  border-color: var(--primary-b);
+}
+
+.status-badge--succeeded {
+  background: var(--success-soft);
+  border-color: var(--success);
+}
+
+.status-badge--failed {
+  background: var(--danger-soft);
+  border-color: var(--danger);
+}
+
+.preview-box {
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+  word-break: break-word;
+  padding: 0.75rem;
+  background: hsl(var(--neutral-h), 14%, 98%);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+}
+
+.form-status {
+  margin: 0;
+  padding: 0.55rem 0.7rem;
+  border-radius: 10px;
+  border: 1px solid transparent;
+}
+
+.form-status--error {
+  background: var(--danger-soft);
+  border-color: var(--danger);
+  color: hsl(4, 52%, 28%);
+}
+
+.form-status--success {
+  background: var(--success-soft);
+  border-color: var(--success);
+  color: hsl(151, 45%, 24%);
+}
+
+.hidden {
+  display: none !important;
+}
+
+@media (max-width: 840px) {
+  .two-up {
+    grid-template-columns: 1fr;
+  }
+
+  .three-up {
+    grid-template-columns: 1fr;
+  }
+}

@@ -1,0 +1,35 @@
+{{define "jobs"}}
+<section class="card page-card">
+  <h1>Jobs</h1>
+  <p class="text-muted">Asynchronous generation tasks and their outcomes.</p>
+</section>
+
+<section class="card page-card">
+  <table class="jobs-table">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Status</th>
+        <th>Work Item</th>
+        <th>Created</th>
+        <th>Finished</th>
+      </tr>
+    </thead>
+    <tbody>
+      {{range .Data.Jobs}}
+      <tr>
+        <td><a href="/jobs/{{.ID}}">#{{.ID}}</a></td>
+        <td><span class="status-badge status-badge--{{.Status}}">{{.Status}}</span></td>
+        <td><a href="/projects/{{.ProjectSlug}}/work-items/{{.WorkItemSlug}}">{{.ProjectName}} / {{.WorkItemName}}</a></td>
+        <td>{{fmtTime .CreatedAt}}</td>
+        <td>{{fmtTimePtr .FinishedAt}}</td>
+      </tr>
+      {{else}}
+      <tr>
+        <td colspan="5" class="text-muted">No jobs submitted yet.</td>
+      </tr>
+      {{end}}
+    </tbody>
+  </table>
+</section>
+{{end}}

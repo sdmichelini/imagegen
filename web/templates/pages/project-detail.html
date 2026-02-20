@@ -1,0 +1,46 @@
+{{define "project-detail"}}
+<section class="card page-card">
+  <h1>{{.Data.Project.Name}}</h1>
+  <p class="text-muted">Slug: {{.Data.Project.Slug}}</p>
+  {{if .Data.Project.DefaultBrandSlug}}
+  <p class="text-muted">Default brand: <a href="/brands/{{.Data.Project.DefaultBrandSlug}}">{{.Data.Project.DefaultBrandSlug}}</a></p>
+  {{end}}
+</section>
+
+<section class="grid two-up">
+  <article class="card page-card">
+    <h2>Work Items</h2>
+    <ul class="list">
+      {{range .Data.WorkItems}}
+      <li><a href="/projects/{{$.Data.Project.Slug}}/work-items/{{.Slug}}">{{.Name}}</a> <span class="text-muted">({{.Type}})</span></li>
+      {{else}}
+      <li class="text-muted">No work items yet.</li>
+      {{end}}
+    </ul>
+  </article>
+
+  <article class="card page-card">
+    <h2>Create Work Item</h2>
+    <form method="post" action="/projects/{{.Data.Project.Slug}}/work-items" class="stack">
+      <label>Name
+        <input type="text" name="name" placeholder="Icon" required>
+      </label>
+      <label>Type
+        <input type="text" name="type" placeholder="icon">
+      </label>
+      <label>Prompt
+        <textarea name="prompt" rows="6" placeholder="Friendly cooking app icon with..." required></textarea>
+      </label>
+      <label>Brand Override (optional)
+        <select name="brand_override">
+          <option value="">Use project default</option>
+          {{range .Data.Brands}}
+          <option value="{{.Slug}}">{{.Slug}}</option>
+          {{end}}
+        </select>
+      </label>
+      <button class="btn btn-primary" type="submit" data-loading-text="Creating...">Create Work Item</button>
+    </form>
+  </article>
+</section>
+{{end}}
