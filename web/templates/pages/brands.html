@@ -1,0 +1,29 @@
+{{define "brands"}}
+<section class="grid two-up">
+  <article class="card page-card">
+    <h1>Brands</h1>
+    <p class="text-muted">Brands are plain Markdown files stored in <code>~/.imagegen/brands</code>.</p>
+    <ul class="list">
+      {{range .Data.Brands}}
+      <li>
+        <a href="/brands/{{.Slug}}">{{.Slug}}</a>
+      </li>
+      {{else}}
+      <li class="text-muted">No brands yet.</li>
+      {{end}}
+    </ul>
+  </article>
+  <article class="card page-card">
+    <h2>Create Brand</h2>
+    <form method="post" action="/brands" class="stack">
+      <label>Name
+        <input type="text" name="name" placeholder="Recipe Buddy" required>
+      </label>
+      <label>Content
+        <textarea name="content" rows="10" placeholder="Tone, style, constraints..." required></textarea>
+      </label>
+      <button class="btn btn-primary" type="submit" data-loading-text="Creating...">Create Brand</button>
+    </form>
+  </article>
+</section>
+{{end}}

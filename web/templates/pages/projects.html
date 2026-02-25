@@ -1,0 +1,34 @@
+{{define "projects"}}
+<section class="grid two-up">
+  <article class="card page-card">
+    <h1>Projects</h1>
+    <ul class="list">
+      {{range .Data.Projects}}
+      <li>
+        <a href="/projects/{{.Slug}}">{{.Name}}</a>
+        <span class="text-muted">({{.WorkItemCount}} work items)</span>
+      </li>
+      {{else}}
+      <li class="text-muted">No projects yet.</li>
+      {{end}}
+    </ul>
+  </article>
+  <article class="card page-card">
+    <h2>Create Project</h2>
+    <form method="post" action="/projects" class="stack">
+      <label>Name
+        <input type="text" name="name" placeholder="Recipe Buddy" required>
+      </label>
+      <label>Default Brand (optional)
+        <select name="default_brand">
+          <option value="">None</option>
+          {{range .Data.Brands}}
+          <option value="{{.Slug}}">{{.Slug}}</option>
+          {{end}}
+        </select>
+      </label>
+      <button class="btn btn-secondary" type="submit" data-loading-text="Creating...">Create Project</button>
+    </form>
+  </article>
+</section>
+{{end}}

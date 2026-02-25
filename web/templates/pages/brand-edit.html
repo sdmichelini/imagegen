@@ -1,0 +1,17 @@
+{{define "brand-edit"}}
+<section class="grid two-up">
+  <article class="card page-card">
+    <h1>Edit Brand: {{.Data.Brand.Slug}}</h1>
+    <form method="post" action="/brands/{{.Data.Brand.Slug}}" class="stack" data-brand-editor>
+      <label>Content (Markdown)
+        <textarea id="brand-content" name="content" rows="18" required>{{.Data.Brand.Content}}</textarea>
+      </label>
+      <button class="btn btn-primary" type="submit" data-loading-text="Saving...">Save Brand</button>
+    </form>
+  </article>
+  <article class="card page-card">
+    <h2>Preview</h2>
+    <pre id="brand-preview" class="preview-box"></pre>
+  </article>
+</section>
+{{end}}

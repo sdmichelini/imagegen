@@ -1,0 +1,33 @@
+{{define "base"}}
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{{.Data.Title}} | ImageGen</title>
+    <link rel="stylesheet" href="{{asset .AssetPath "app.css"}}">
+  </head>
+  <body>
+    {{template "nav" .}}
+    <main class="page-shell">
+      {{template "flash" .}}
+      {{if eq .Page "dashboard"}}{{template "dashboard" .}}{{end}}
+      {{if eq .Page "brands"}}{{template "brands" .}}{{end}}
+      {{if eq .Page "brand-edit"}}{{template "brand-edit" .}}{{end}}
+      {{if eq .Page "projects"}}{{template "projects" .}}{{end}}
+      {{if eq .Page "about"}}{{template "about" .}}{{end}}
+      {{if eq .Page "project-detail"}}{{template "project-detail" .}}{{end}}
+      {{if eq .Page "work-item-detail"}}{{template "work-item-detail" .}}{{end}}
+      {{if eq .Page "jobs"}}{{template "jobs" .}}{{end}}
+      {{if eq .Page "job-detail"}}{{template "job-detail" .}}{{end}}
+    </main>
+    {{template "footer" .}}
+    {{if ne .Page "about"}}<script src="{{asset .AssetPath "app.js"}}" defer></script>{{end}}
+    {{if eq .Page "brands"}}<script src="{{asset .AssetPath "brands.js"}}" defer></script>{{end}}
+    {{if eq .Page "brand-edit"}}<script src="{{asset .AssetPath "brand-edit.js"}}" defer></script>{{end}}
+    {{if eq .Page "project-detail"}}<script src="{{asset .AssetPath "project-detail.js"}}" defer></script>{{end}}
+    {{if eq .Page "work-item-detail"}}<script src="{{asset .AssetPath "work-item-detail.js"}}" defer></script>{{end}}
+    {{if eq .Page "job-detail"}}<script src="{{asset .AssetPath "job-detail.js"}}" defer></script>{{end}}
+  </body>
+</html>
+{{end}}

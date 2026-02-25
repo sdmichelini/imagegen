@@ -14,6 +14,15 @@ Read `ARCHITECTURE.md` first before making structural changes.
 
 - `make install` - download Go module dependencies
 - `make build` - build the binary at `./imagegen`
+- `make web-lint` - lint TypeScript frontend code
+- `make web-typecheck` - strict TypeScript type checking
+
+## TypeScript Workflow
+
+- After editing any `web/static/js/src/**/*.ts` file, run:
+  - `make web-lint`
+  - `make web-typecheck`
+  - `make build`
 
 ## Build Quality
 
